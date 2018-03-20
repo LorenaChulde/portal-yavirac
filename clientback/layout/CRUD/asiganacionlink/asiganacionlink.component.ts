@@ -4,7 +4,7 @@ import { AsiganacionLink } from '../../entidades/CRUD/AsiganacionLink';
 import { AsiganacionLinkService } from './asiganacionlink.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from 'app/layout/bs-component/components';
+import { ModalComponent } from './../../layout/bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 

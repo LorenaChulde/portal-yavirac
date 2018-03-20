@@ -10,6 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BsComponentModule } from './layout/bs-component/bs-component.module';
+import { Http, HttpModule } from '@angular/http';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastOptions } from 'ng2-toastr/src/toast-options';
+import { ToastContainer } from 'ng2-toastr/src/toast-container.component';
+
+
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
     // for development
@@ -19,6 +28,9 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
     imports: [
+        HttpModule,
+        FormsModule,
+        BsComponentModule,
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -30,6 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        ToastModule.forRoot(),
         AppRoutingModule
     ],
     declarations: [AppComponent],

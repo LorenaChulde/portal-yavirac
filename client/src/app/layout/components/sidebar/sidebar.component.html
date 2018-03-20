@@ -23,12 +23,21 @@
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
-                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Menu' | translate }}</span>
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Base de Datos' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)"><span>{{ 'Submenu' | translate }}</span></a>
+                        <a [routerLink]="['/producto']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-briefcase"></i>&nbsp;{{ 'Producto' | translate }}
+                        </a>
+
+                    </li>
+                    <li>
+                        <a [routerLink]="['/imagen']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-file-image-o"></i>&nbsp;{{ 'Imagen' | translate }}
+                        </a>
+
                     </li>
                     <li>
                         <a href="javascript:void(0)"><span>{{ 'Submenu' | translate }}</span></a>
