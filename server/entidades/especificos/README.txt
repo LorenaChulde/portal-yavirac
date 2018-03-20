@@ -1,0 +1,1 @@
+Colocar aca las entidades para atender funcionalidades especificas

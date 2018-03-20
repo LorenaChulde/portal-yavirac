@@ -1,0 +1,138 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-12 text-right">
+         <h2 style="margin-top:0px">Catálogo de AsiganacionLink</h2>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         <div class="btn-toolbar">
+            <div>
+               <button type="button" class="btn btn-default" (click)="refresh()">
+                  <span class="fa fa-refresh"></span>&nbsp;Leer
+               </button>
+               <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                  <span class="fa fa-edit"></span>&nbsp;Editar
+               </button>
+               <button type="button" class="btn btn-info" (click)="open(content,true)">
+                  <span class="fa fa-plus"></span>&nbsp;Nuevo
+               </button>
+               <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation();" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                  <span class="fa fa-remove"></span>&nbsp;Borrar
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row" style="margin-top:15px">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+               <tr>
+                  <th>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Identificador</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>prioridad</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>idLink</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>idPagina</strong>
+                     </span>
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let actual of entidades" (click)="onSelect(actual)">
+                  <td>
+                     <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
+                  </td>
+                  <td>{{actual.id}}</td>
+                  <td>{{actual.prioridad}}</td>
+                  <td>{{actual.idLink}}</td>
+                  <td>{{actual.idPagina}}</td>
+               </tr>
+            </tbody>
+         </table>
+         <div class="col-md-12">
+            <div class="btn-toolbar">
+               <div>
+                  <button type="button" class="btn btn-default" (click)="getPaginaPrimera()">
+                     <span class="fa fa-fast-backward"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="getPaginaAnterior()">
+                     <span class="fa fa-step-backward"></span>
+                  </button>
+                  <span><strong style="margin:10px;">Página</strong><strong id="paginaActual">{{paginaActual}}</strong><strong style="margin:10px;">de</strong><strong id="paginaUltima" style="margin-right:10px;">{{paginaUltima}}</strong></span>
+                  <button type="button" class="btn btn-default" (click)="getPaginaSiguiente()">
+                     <span class="fa fa-step-forward"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="getPaginaUltima()">
+                     <span class="fa fa-fast-forward"></span>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+         <h4 class="modal-title">
+            <span *ngIf="entidadSeleccionada.id != 0">
+               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+            </span>
+            <span *ngIf="entidadSeleccionada.id === 0">
+               Ingreso de Datos:
+            </span>
+         </h4>
+         <button type="button" class="close" aria-label="Close" (click)="d('ClickEnX')">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <form>
+         <div class="form-group row">
+            <label for="id" class="col-sm-4 col-form-label">Identificador</label>
+            <div class="col-sm-8">
+              <input type="text" readonly class="form-control" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="prioridad" class="col-sm-4 col-form-label">prioridad</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="prioridad" name="prioridad" placeholder="prioridad" [(ngModel)]="entidadSeleccionada.prioridad">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="idLink" class="col-sm-4 col-form-label">idLink</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="idLink" name="idLink" placeholder="idLink" [(ngModel)]="entidadSeleccionada.idLink">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="idPagina" class="col-sm-4 col-form-label">idPagina</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="idPagina" name="idPagina" placeholder="idPagina" [(ngModel)]="entidadSeleccionada.idPagina">
+            </div>
+         </div>
+         </form>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
+            <span class="fa fa-save"></span>&nbsp;Guardar
+         </button>
+         <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
+      </div>
+   </ng-template>
+</div>
