@@ -31,20 +31,52 @@
                         <a [routerLink]="['/producto']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-briefcase"></i>&nbsp;{{ 'Producto' | translate }}
                         </a>
-
+                    </li>
+                    <li>
+                        <a [routerLink]="['/pagina']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-address-card-o"></i>&nbsp;{{ 'Pagina' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/menu']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-bars"></i>&nbsp;{{ 'Menu' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/asiganacionlink']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-bars"></i>&nbsp;{{ 'Asignacion Link' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/noticia']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-newspaper-o"></i>&nbsp;{{ 'Noticia' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/link']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-keyboard-o"></i>&nbsp;{{ 'Link' | translate }}
+                        </a>
                     </li>
                     <li>
                         <a [routerLink]="['/imagen']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-file-image-os"></i>&nbsp;{{ 'Imagen' | translate }}
                         </a>
-
                     </li>
 
                     <li>
-                        <a href="javascript:void(0)"><span>{{ 'Submenu' | translate }}</span></a>
+                        <a [routerLink]="['/comentario']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-comment-o"></i>&nbsp;{{ 'Comentario' | translate }}
+                        </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"><span>{{ 'Submenu' | translate }}</span></a>
+                        <a [routerLink]="['/usuario']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-user-circle-o"></i>&nbsp;{{ 'Usuario' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/item']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-bookmark-o"></i>&nbsp;{{ 'Item' | translate }}
+                        </a>
                     </li>
                 </ul>
             </li>
