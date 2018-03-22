@@ -115,16 +115,20 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="idPersona" class="col-sm-4 col-form-label">Persona</label>
+            <label for="idUsuario" class="col-sm-4 col-form-label">Usuario</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="Persona" [(ngModel)]="entidadSeleccionada.idPersona">
+              <select class="form-control" id="idUsusario" name="idUsuario" [(ngModel)]="entidadSeleccionada.idUsuario">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let usuario of usuarios" value={{usuario.id}}>{{usuario.nombreCompleto}}</option>
+              </select>
             </div>
          </div>
          <div class="form-group row">
             <label for="tipoArchivo" class="col-sm-4 col-form-label">Tipo de Archivo</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="tipoArchivo" name="tipoArchivo" placeholder="Tipo de Archivo" [(ngModel)]="entidadSeleccionada.tipoArchivo">
-            </div>
+            <input type="text" class="form-control" id="tipoArchivo" name="tipoArchivo" placeholder="Tipo de Archivo" [(ngModel)]="entidadSeleccionada.tipoArchivo">
+            
+          </div>
          </div>
          <div class="form-group row">
             <label for="nombreArchivo" class="col-sm-4 col-form-label">Nombre de Archivo</label>
