@@ -5,4 +5,5 @@ export class Pagina {
    texto: string;
    idFoto: number;
    idMenu: number;
+   descripcion: string;
 }

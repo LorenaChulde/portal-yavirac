@@ -7,6 +7,7 @@ class Pagina
    public $texto;
    public $idFoto;
    public $idMenu;
+   public $descripcion;
 
    function __construct($id,$slider,$esPrincipal,$texto,$idFoto,$idMenu){
       $this->id = $id;
@@ -15,6 +16,7 @@ class Pagina
       $this->texto = $texto;
       $this->idFoto = $idFoto;
       $this->idMenu = $idMenu;
+      $this->descripcion = $descripcion;
    }
 }
 ?>

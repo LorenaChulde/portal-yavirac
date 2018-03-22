@@ -5,22 +5,22 @@ class Controlador_pagina extends Controlador_Base
 {
    function crear($args)
    {
-      $pagina = new Pagina($args["id"],$args["slider"],$args["esPrincipal"],$args["texto"],$args["idFoto"],$args["idMenu"]);
-      $sql = "INSERT INTO Pagina (slider,esPrincipal,texto,idFoto,idMenu) VALUES (?,?,?,?,?);";
-      $parametros = array($pagina->slider,$pagina->esPrincipal,$pagina->texto,$pagina->idFoto,$pagina->idMenu);
+      $pagina = new Pagina($args["id"],$args["slider"],$args["esPrincipal"],$args["texto"],$args["idFoto"],$args["idMenu"],$args["descripcion"]);
+      $sql = "INSERT INTO Pagina (slider,esPrincipal,texto,idFoto,idMenu,descripcion) VALUES (?,?,?,?,?,?);";
+      $parametros = array($pagina->slider,$pagina->esPrincipal,$pagina->texto,$pagina->idFoto,$pagina->idMenu,$pagina->descripcion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
-      }else{
+      }else{ 
          return false;
       }
    }
 
    function actualizar($args)
    {
-      $pagina = new Pagina($args["id"],$args["slider"],$args["esPrincipal"],$args["texto"],$args["idFoto"],$args["idMenu"]);
-      $parametros = array($pagina->slider,$pagina->esPrincipal,$pagina->texto,$pagina->idFoto,$pagina->idMenu,$pagina->id);
-      $sql = "UPDATE Pagina SET slider = ?,esPrincipal = ?,texto = ?,idFoto = ?,idMenu = ? WHERE id = ?;";
+      $pagina = new Pagina($args["id"],$args["slider"],$args["esPrincipal"],$args["texto"],$args["idFoto"],$args["idMenu"],$args["descripcion"]);
+      $parametros = array($pagina->slider,$pagina->esPrincipal,$pagina->texto,$pagina->idFoto,$pagina->idMenu,$pagina->id,$pagina->descripcion);
+      $sql = "UPDATE Pagina SET slider = ?,esPrincipal = ?,texto = ?,idFoto = ?,idMenu = ?,descripcion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

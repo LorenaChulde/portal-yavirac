@@ -171,7 +171,10 @@
          <div class="form-group row">
             <label for="idPagina" class="col-sm-4 col-form-label">Página</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idPagina" name="idPagina" placeholder="Página" [(ngModel)]="entidadSeleccionada.idPagina">
+              <select class="form-control" id="idPagina" name="idPagina" [(ngModel)]="entidadSeleccionada.idPagina">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let pagina of paginas" value={{pagina.id}}>{{pagina.descripcion}}</option>
+              </select>
             </div>
          </div>
          </form>
