@@ -154,7 +154,11 @@
          <div class="form-group row">
             <label for="idMenu" class="col-sm-4 col-form-label">Menú</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idMenu" name="idMenu" placeholder="Menú" [(ngModel)]="entidadSeleccionada.idMenu">
+                <select class="form-control" id="idMenu" name="idMenu" [(ngModel)]="entidadSeleccionada.idMenu">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let menu of menus" value={{menu.id}}>{{menu.descripcion}}</option>
+              </select>
+
             </div>
         </div>
         <div class="form-group row">
