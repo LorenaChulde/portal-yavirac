@@ -48,6 +48,14 @@ export class DashboardComponent implements OnInit {
                 Voluptates est animi quibusdam praesentium quam, et perspiciatis,
                 consectetur velit culpa molestias dignissimos
                 voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+            },
+            {
+                id: 3,
+                type: 'info',
+                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
             }
         );
     }
