@@ -26,6 +26,17 @@ const routes: Routes = [
             { path: 'pagina', loadChildren: './../CRUD/pagina/pagina.module#PaginaModule' },
             { path: 'producto', loadChildren: './../CRUD/producto/producto.module#ProductoModule' },
             { path: 'usuario', loadChildren: './../CRUD/usuario/usuario.module#UsuarioModule' },
+            { path: 'bolsa-empleo', loadChildren: './bolsa-empleo/bolsa-empleo.module#BolsaEmpleoModule' },
+            { path: 'carrera-software', loadChildren: './carrera-software/carrera-software.module#CarreraSoftwareModule' },
+            { path: 'investigacion', loadChildren: './investigacion/investigacion.module#InvestigacionModule' },
+            { path: 'vinculacion', loadChildren: './vinculacion/vinculacion.module#VinculacionModule' },
+            { path: 'diseño-modas', loadChildren: './diseno-modas/diseno-modas.module#DisenoModasModule' },
+            { path: 'electricidad', loadChildren: './electricidad/electricidad.module#ElectricidadModule' },
+            { path: 'guianza-turistica', loadChildren: './guianza-turistica/guianza-turistica.module#GuianzaTuristicaModule' },
+            { path: 'culinario', loadChildren: './culinario/culinario.module#CulinarioModule' },
+            { path: 'electronica', loadChildren: './electronica/electronica.module#ElectronicaModule' },
+            { path: 'analisis', loadChildren: './analisis/analisis.module#AnalisisModule' },
+            { path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule' }
         ]
     }
 ];
