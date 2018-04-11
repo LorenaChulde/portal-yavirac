@@ -46,6 +46,16 @@ export class DashboardComponent implements OnInit {
             {
                 id: 3,
                 type: 'info',
+                message: `Esperando Noticias...`
+            },
+            {
+                id: 4,
+                type: 'danger',
+                message: `Esperando Noticias...`
+            },
+            {
+                id: 5,
+                type: 'dark',
                 message: `Esperando Noticias`
             }
         );
