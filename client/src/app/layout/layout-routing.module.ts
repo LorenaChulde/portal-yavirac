@@ -36,7 +36,8 @@ const routes: Routes = [
             { path: 'culinario', loadChildren: './culinario/culinario.module#CulinarioModule' },
             { path: 'electronica', loadChildren: './electronica/electronica.module#ElectronicaModule' },
             { path: 'analisis', loadChildren: './analisis/analisis.module#AnalisisModule' },
-            { path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule' }
+            { path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule' },
+            { path: 'noticias', loadChildren: './noticias/noticias.module#NoticiasModule' }
         ]
     }
 ];
