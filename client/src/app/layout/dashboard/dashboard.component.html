@@ -44,29 +44,30 @@
             <app-stat [bgClass]="'dark'" [icon]="'fa fa-cogs'" [count]="12" [label]="'Analisis de Sistemas'"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'info'" [icon]="'fa fa-cutlery'" [count]="12" [label]="'Arte y Culinario'"></app-stat>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-cutlery'" [label]="'Arte y Culinario'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/culinario">Ver Carrera</a>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa fa-scissors'" [count]="124" [label]="'Diseño de Modas'"></app-stat>
-        </div>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-scissors'" [label]="'Diseño de Modas'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/dise%C3%B1o-modas" >Ver Carrera</a>        </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa fa-desktop'" [count]="13" [label]="'Desarrollo de Software'"></app-stat>
-        </div>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-database'" [label]="'Desarrollo de Software'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/carrera-software" >Ver Carrera</a>        </div>
     </div>
     <br>
     <div class="row">
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa fa-bolt'" [count]="12" [label]="'Electricidad'"></app-stat>
-        </div>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-bolt'" [label]="'Electricidad'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/electricidad" >Ver Carrera</a>        </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa fa-microchip'" [count]="12" [label]="'Electronica'"></app-stat>
-        </div>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-microchip'" [label]="'Electronica'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/electronica" >Ver Carrera</a>        </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'info'" [icon]="'fa fa-street-view'" [count]="12" [label]="'Guianza Turistica'"></app-stat>
-        </div>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-street-view'" [label]="'Guianza Turistica'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/guianza-turistica" >Ver Carrera</a>        </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'dark'" [icon]="'fa fa-bar-chart-o'" [count]="124" [label]="'Marketing'"></app-stat>
-        </div>
+            <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-pie-chart'" [label]="'Marketing'"></app-stat>
+            <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/marketing" >Ver Carrera</a>        </div>
     </div>
     <hr />
     <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
