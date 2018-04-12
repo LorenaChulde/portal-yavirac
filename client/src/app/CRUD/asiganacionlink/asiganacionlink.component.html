@@ -130,7 +130,7 @@
           <div class="col-sm-8">
             <select class="form-control" id="idPagina" name="idPagina" [(ngModel)]="entidadSeleccionada.idPagina">
               <option value="" selected>Seleccione...</option>
-              <option *ngFor="let pagina of paginas" value={{pagina.id}}>{{pagina.nombreArchivo}}</option>
+              <option *ngFor="let pagina of entidadesAsiganacionLinkPagina" value={{pagina.id}}>{{pagina.descripcion}}</option>
             </select>
           </div>
         </div>
