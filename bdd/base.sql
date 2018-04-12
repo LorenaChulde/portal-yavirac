@@ -92,4 +92,3 @@ CREATE TABLE Item (
   PRIMARY KEY (id)
 );
 
-insert into Pagina values (1,"slider de prueba",1,"Texto de pagina para pruebas",1,1,"describir lo que va en la pagina");

@@ -1,0 +1,10 @@
+INSERT INTO AsiganacionLink VALUES(1,1,1,1);
+INSERT INTO Comentario VALUES(1,'2018/04/04 12:30:01',1,1);
+INSERT INTO Imagen VALUES(1,1,'','Imagen1','');
+INSERT INTO Item VALUES(1,'Item1','www.yavirac.edu.ec',1,1);
+INSERT INTO Link VALUES(1,'LINK1','www.yavirac.edu.ec',1);
+INSERT INTO Menu VALUES(1,'Menu1');
+INSERT INTO Noticia VALUES(1,'Noticia1',1,1,1);
+insert into Pagina values (1,"slider de prueba",1,"Texto de pagina para pruebas",1,1,"describir lo que va en la pagina");
+INSERT INTO Producto VALUES(1,'Producto1','Es un producto','',1,'','',1);
+INSERT INTO Usuario VALUES(1,'Bryan Cortez','Big.cortez','','maribel','');
