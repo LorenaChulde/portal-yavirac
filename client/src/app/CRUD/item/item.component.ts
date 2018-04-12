@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Item } from '../../entidades/CRUD/Item';
+import { ItemMenu } from '../../entidades/especifico/ItemMenu';
+import { ItemPagina } from '../../entidades/especifico/ItemPagina';
 import { ItemService } from './item.service';
 
 import 'rxjs/add/operator/toPromise';
@@ -18,6 +20,8 @@ export class ItemComponent implements OnInit {
 
    busy: Promise<any>;
    entidades: Item[];
+   entidadesItemMenu: ItemMenu[];
+   entidadesItemPagina: ItemPagina[];
    entidadSeleccionada: Item;
    pagina: 1;
    tamanoPagina: 20;
@@ -84,22 +88,51 @@ export class ItemComponent implements OnInit {
          this.toastr.success('Se produjo un error', 'Consulta');
       });
    }
-
+   getItemMenu(): void {
+    this.busy = this.dataService
+    .getItemMenu()
+    .then(entidadesRecuperadas => {
+       this.entidadesItemMenu = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
+ getItemPagina(): void {
+    this.busy = this.dataService
+    .getItemPagina()
+    .then(entidadesRecuperadas => {
+       this.entidadesItemPagina = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
    getPagina(pagina: number, tamanoPagina: number): void {
-      this.busy = this.dataService
-      .getPagina(pagina, tamanoPagina)
-      .then(entidadesRecuperadas => {
-         this.entidades = entidadesRecuperadas
-         if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-            this.toastr.success('¡No hay datos!', 'Consulta');
-         } else {
-            this.toastr.success('La consulta fue exitosa', 'Consulta');
-         }
-      })
-      .catch(error => {
-         this.toastr.success('Se produjo un error', 'Consulta');
-      });
-   }
+    this.busy = this.dataService
+    .getPagina(pagina, tamanoPagina)
+    .then(entidadesRecuperadas => {
+       this.entidades = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
 
    getNumeroPaginas(tamanoPagina: number): void{
       this.busy = this.dataService
@@ -212,6 +245,8 @@ export class ItemComponent implements OnInit {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
       this.refresh();
+      this.getItemMenu();
+      this.getItemPagina();
    }
 
    onSelect(entidadActual: Item): void {

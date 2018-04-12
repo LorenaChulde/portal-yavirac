@@ -5,12 +5,16 @@ import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 
 import { Pagina } from '../../entidades/CRUD/Pagina';
+import { PaginaImagen } from '../../entidades/especifico/PaginaImagen';
+import { PaginaMenu } from '../../entidades/especifico/PaginaMenu';
 
 @Injectable()
 
 export class PaginaService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
    private urlBase = environment.apiUrl + 'pagina';
+   private urlBase1 = environment.apiUrl + 'pagina_imagen';
+   private urlBase2 = environment.apiUrl + 'pagina_menu';
 
    constructor(private http: Http) {
    }
@@ -22,6 +26,12 @@ export class PaginaService {
    getAll(): Promise<Pagina[]> {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Pagina[]).catch(this.handleError);
    }
+   getPaginaImagen(): Promise<PaginaImagen[]> {
+    return this.http.get(this.urlBase1 + '/consultar').toPromise().then(response => response.json() as PaginaImagen[]).catch(this.handleError);
+}
+getPaginaMenu(): Promise<PaginaMenu[]> {
+    return this.http.get(this.urlBase2 + '/consultar').toPromise().then(response => response.json() as PaginaMenu[]).catch(this.handleError);
+}
 
    getPagina(pagina: number, tamanoPagina: number): Promise<Pagina[]> {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Pagina[]).catch(this.handleError);

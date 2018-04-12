@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from './../../layout/bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { LinkMenu } from '../../entidades/especifico/LinkMenu';
 
 @Component({
    selector: 'app-link',
@@ -18,6 +19,7 @@ export class LinkComponent implements OnInit {
 
    busy: Promise<any>;
    entidades: Link[];
+   entidadesLinkMenu: LinkMenu[];
    entidadSeleccionada: Link;
    pagina: 1;
    tamanoPagina: 20;
@@ -101,6 +103,21 @@ export class LinkComponent implements OnInit {
       });
    }
 
+   getLinkMenu(): void {
+    this.busy = this.dataService
+    .getLinkMenu() 
+    .then(entidadesRecuperadas => {
+       this.entidadesLinkMenu = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
    getNumeroPaginas(tamanoPagina: number): void{
       this.busy = this.dataService
       .getNumeroPaginas(tamanoPagina)
@@ -212,6 +229,7 @@ export class LinkComponent implements OnInit {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
       this.refresh();
+      this.getLinkMenu(); 
    }
 
    onSelect(entidadActual: Link): void {
