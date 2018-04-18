@@ -3,14 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NoticiasComponent } from './noticias.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: NoticiasComponent
-    }
+   { path: '', component: NoticiasComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+   imports: [RouterModule.forChild(routes)],
+   exports: [RouterModule]
 })
-export class NoticiasRoutingModule {}
+export class NoticiasRoutingModule { }
