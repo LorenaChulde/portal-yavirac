@@ -36,7 +36,7 @@ export class NoticiasComponent implements OnInit {
 
     getNoticia(): void {
         this.busy = this.dataService
-            .getNoticia(2)
+            .getNoticia(1)
             .then(entidadesRecuperadas => {
                 this.noticia = entidadesRecuperadas;
                 console.log(this.noticia.titulo);
