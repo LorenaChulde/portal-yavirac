@@ -1,0 +1,30 @@
+<div class="container">
+    <div *ngFor="let actual of noticia">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-primary" role="alert" align="CENTER">
+                        <h1>{{actual.titulo}}</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    {{actual.fecha}}
+                    <br> {{actual.descripcion}}
+                </div>
+                <div class="col-lg-6">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                aqui la foto
+                {{actual.idFoto}}
+            </div>
+            <div class="col-lg-6">
+                aqui la pagina
+                {{actual.idPagina}}
+            </div>
+        </div>
+    </div>
+</div>
