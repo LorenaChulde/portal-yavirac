@@ -5,12 +5,14 @@ import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 
 import { AsiganacionLink } from '../../entidades/CRUD/AsiganacionLink';
+import { AsiganacionLinkPagina } from '../../entidades/especifico/AsiganacionLinkPagina';
 
 @Injectable()
 
 export class AsiganacionLinkService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
    private urlBase = environment.apiUrl + 'asiganacionlink';
+   private urlBase1 = environment.apiUrl + 'asiganacionlink_pagina';
 
    constructor(private http: Http) {
    }
@@ -22,7 +24,9 @@ export class AsiganacionLinkService {
    getAll(): Promise<AsiganacionLink[]> {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as AsiganacionLink[]).catch(this.handleError);
    }
-
+   getAsiganacionLinkPagina(): Promise<AsiganacionLinkPagina[]> {
+    return this.http.get(this.urlBase1+'/consultar').toPromise().then(response=>response.json() as AsiganacionLinkPagina[]).catch(this.handleError);
+ }
    getPagina(pagina: number, tamanoPagina: number): Promise<AsiganacionLink[]> {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as AsiganacionLink[]).catch(this.handleError);
    }

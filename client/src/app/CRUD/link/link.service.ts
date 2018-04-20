@@ -5,12 +5,14 @@ import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 
 import { Link } from '../../entidades/CRUD/Link';
+import { LinkMenu } from '../../entidades/especifico/LinkMenu';
 
 @Injectable()
 
 export class LinkService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
    private urlBase = environment.apiUrl + 'link';
+   private urlBase2 = environment.apiUrl + 'link_menu';
 
    constructor(private http: Http) {
    }
@@ -22,6 +24,10 @@ export class LinkService {
    getAll(): Promise<Link[]> {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Link[]).catch(this.handleError);
    }
+
+   getLinkMenu(): Promise<LinkMenu[]> {
+    return this.http.get(this.urlBase2+'/consultar').toPromise().then(response=>response.json() as LinkMenu[]).catch(this.handleError);
+ }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<Link[]> {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Link[]).catch(this.handleError);

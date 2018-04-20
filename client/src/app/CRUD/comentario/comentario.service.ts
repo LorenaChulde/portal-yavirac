@@ -5,12 +5,16 @@ import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 
 import { Comentario } from '../../entidades/CRUD/Comentario';
+import { ComentarioUsuario } from '../../entidades/especifico/ComentarioUsuario';
+import { ComentarioNoticia } from '../../entidades/especifico/ComentarioNoticia';
 
 @Injectable()
 
 export class ComentarioService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
    private urlBase = environment.apiUrl + 'comentario';
+   private urlBase1 = environment.apiUrl + 'comentario_usuario';
+   private urlBase2 = environment.apiUrl + 'comentario_noticia';
 
    constructor(private http: Http) {
    }
@@ -22,6 +26,12 @@ export class ComentarioService {
    getAll(): Promise<Comentario[]> {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Comentario[]).catch(this.handleError);
    }
+   getComentarioUsuario(): Promise<ComentarioUsuario[]> {
+    return this.http.get(this.urlBase1+'/consultar').toPromise().then(response=>response.json() as ComentarioUsuario[]).catch(this.handleError);
+ }
+ getComentarioNoticia(): Promise<ComentarioNoticia[]> {
+    return this.http.get(this.urlBase2+'/consultar').toPromise().then(response=>response.json() as ComentarioNoticia[]).catch(this.handleError);
+ }
 
    getPagina(pagina: number, tamanoPagina: number): Promise<Comentario[]> {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Comentario[]).catch(this.handleError);

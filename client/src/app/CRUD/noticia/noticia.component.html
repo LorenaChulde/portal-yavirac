@@ -156,7 +156,7 @@
           <div class="col-sm-8">
             <select class="form-control" id="idFoto" name="idFoto" [(ngModel)]="entidadSeleccionada.idFoto">
               <option value="" selected>Seleccione...</option>
-              <option *ngFor="let foto of fotos" value={{foto.id}}>{{foto.nombreArchivo}}</option>
+              <option *ngFor="let foto of entidadesNoticiaFoto" value={{foto.id}}>{{foto.nombreArchivo}}</option>
             </select>
           </div>
         </div>
@@ -165,7 +165,7 @@
           <div class="col-sm-8">
             <select class="form-control" id="idPagina" name="idPagina" [(ngModel)]="entidadSeleccionada.idPagina">
               <option value="" selected>Seleccione...</option>
-              <option *ngFor="let pagina of paginas" value={{pagina.id}}>{{pagina.nombreArchivo}}</option>
+              <option *ngFor="let pagina of entidadesNoticiaPagina" value={{pagina.id}}>{{pagina.descripcion}}</option>
             </select>
           </div>
         </div>

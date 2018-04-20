@@ -125,7 +125,7 @@
             <div class="col-sm-8">
               <select class="form-control" id="idMenu" name="idMenu" [(ngModel)]="entidadSeleccionada.idMenu">
                 <option value="" selected>Seleccione...</option>
-                <option *ngFor="let menu of menus" value={{menu.id}}>{{menu.descripcion}}</option>
+                <option *ngFor="let menu of entidadesLinkMenu" value={{menu.id}}>{{menu.descripcion}}</option>
               </select>
             </div>
          </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Comentario } from '../../entidades/CRUD/Comentario';
+import { ComentarioUsuario } from '../../entidades/especifico/ComentarioUsuario';
+import { ComentarioNoticia } from '../../entidades/especifico/ComentarioNoticia';
 import { ComentarioService } from './comentario.service';
 
 import 'rxjs/add/operator/toPromise';
@@ -18,6 +20,8 @@ export class ComentarioComponent implements OnInit {
 
    busy: Promise<any>;
    entidades: Comentario[];
+   entidadesComentarioUsuario: ComentarioUsuario[];
+   entidadesComentarioNoticia: ComentarioNoticia[];
    entidadSeleccionada: Comentario;
    pagina: 1;
    tamanoPagina: 20;
@@ -84,6 +88,36 @@ export class ComentarioComponent implements OnInit {
          this.toastr.success('Se produjo un error', 'Consulta');
       });
    }
+   getComentarioUsuario(): void {
+    this.busy = this.dataService
+    .getComentarioUsuario()
+    .then(entidadesRecuperadas => {
+       this.entidadesComentarioUsuario = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
+ getComentarioNoticia(): void {
+    this.busy = this.dataService
+    .getComentarioNoticia()
+    .then(entidadesRecuperadas => {
+       this.entidadesComentarioNoticia = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
 
    getPagina(pagina: number, tamanoPagina: number): void {
       this.busy = this.dataService
@@ -212,6 +246,9 @@ export class ComentarioComponent implements OnInit {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
       this.refresh();
+      this.getComentarioUsuario();
+      this.getComentarioNoticia();
+      
    }
 
    onSelect(entidadActual: Comentario): void {

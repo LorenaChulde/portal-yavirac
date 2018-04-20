@@ -131,7 +131,7 @@
             <div class="col-sm-8">
               <select class="form-control" id="idMenu" name="idMenu" [(ngModel)]="entidadSeleccionada.idMenu">
                 <option value="" selected>Seleccione...</option>
-                <option *ngFor="let menu of menus" value={{menu.id}}>{{menu.descripcion}}</option>
+                <option *ngFor="let menu of entidadesItemMenu" value={{menu.id}}>{{menu.descripcion}}</option>
               </select>
             </div>
          </div>
@@ -140,7 +140,7 @@
             <div class="col-sm-8">
               <select class="form-control" id="idPagina" name="idPagina" [(ngModel)]="entidadSeleccionada.idPagina">
                 <option value="" selected>Seleccione...</option>
-                <option *ngFor="let pagina of paginas" value={{pagina.id}}>{{pagina.nombreArchivo}}</option>
+                <option *ngFor="let pagina of entidadesItemPagina" value={{pagina.id}}>{{pagina.descripcion}}</option>
               </select>
             </div>
          </div>

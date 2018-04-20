@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AsiganacionLink } from '../../entidades/CRUD/AsiganacionLink';
+import { AsiganacionLinkPagina } from '../../entidades/especifico/AsiganacionLinkPagina';
 import { AsiganacionLinkService } from './asiganacionlink.service';
 
 import 'rxjs/add/operator/toPromise';
@@ -18,6 +19,7 @@ export class AsiganacionLinkComponent implements OnInit {
 
    busy: Promise<any>;
    entidades: AsiganacionLink[];
+   entidadesAsiganacionLinkPagina: AsiganacionLinkPagina[];
    entidadSeleccionada: AsiganacionLink;
    pagina: 1;
    tamanoPagina: 20;
@@ -84,6 +86,21 @@ export class AsiganacionLinkComponent implements OnInit {
          this.toastr.success('Se produjo un error', 'Consulta');
       });
    }
+   getAsiganacionLinkPagina(): void {
+    this.busy = this.dataService
+    .getAsiganacionLinkPagina()
+    .then(entidadesRecuperadas => {
+       this.entidadesAsiganacionLinkPagina = entidadesRecuperadas
+       if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+          this.toastr.success('¡No hay datos!', 'Consulta');
+       } else {
+          this.toastr.success('La consulta fue exitosa', 'Consulta');
+       }
+    })
+    .catch(error => {
+       this.toastr.success('Se produjo un error', 'Consulta');
+    });
+ }
 
    getPagina(pagina: number, tamanoPagina: number): void {
       this.busy = this.dataService
@@ -212,6 +229,7 @@ export class AsiganacionLinkComponent implements OnInit {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
       this.refresh();
+      this.getAsiganacionLinkPagina();
    }
 
    onSelect(entidadActual: AsiganacionLink): void {
