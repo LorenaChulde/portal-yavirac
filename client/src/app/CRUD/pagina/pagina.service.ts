@@ -22,7 +22,13 @@ export class PaginaService {
    baseUrl(): string {
        return this.urlBase;
    }
-
+   insertarPagina(entidadTransporte: Pagina): Promise<boolean> {
+    return this.http
+        .post(this.urlBase + '/insertar_pagina', JSON.stringify(entidadTransporte))
+        .toPromise()
+        .then(response => response.json() as Pagina[])
+        .catch(this.handleError);
+}
    getAll(): Promise<Pagina[]> {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Pagina[]).catch(this.handleError);
    }

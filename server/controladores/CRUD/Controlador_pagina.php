@@ -15,7 +15,39 @@ class Controlador_pagina extends Controlador_Base
          return false;
       }
    }
-
+   function insertar_imagen($args)
+   {
+      $sql= "INSERT INTO Imagen (nombreArchivo, tipoArchivo, adjunto) VALUES (?,?,?);";
+      $parametros= array(
+                  $args['nombreArchivo'],
+                  $args['tipoArchivo'],
+                  $args['adjunto']);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      if(is_null($respuesta[0])){
+         return true;
+       }else{
+         return false;
+            }
+   }
+   function insertar_pagina($args)
+   {
+      $this->insertar_imagen($args);
+      $sql= "INSERT INTO Pagina (slider,esPrincipal,texto,idFoto,idMenu,descripcion) 
+      VALUES (?,?,?,?,?,?);";
+      $parametros= array(
+                   $args['slider'],
+                   $args['esPrincipal'],
+                   $args['texto'],
+                   $args['idFoto'],
+                   $args['idMenu'],
+                   $args['descripcion']);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      if(is_null($respuesta[0])){
+         return true;
+       }else{
+         return false;
+            }
+   }
    function actualizar($args)
    {
       $pagina = new Pagina($args["id"],$args["slider"],$args["esPrincipal"],$args["texto"],$args["idFoto"],$args["idMenu"],$args["descripcion"]);

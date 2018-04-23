@@ -29,11 +29,51 @@ export class PaginaComponent implements OnInit {
     paginaUltima: number;
     registrosPorPagina: number;
     esVisibleVentanaEdicion: boolean;
+    imagenNoticia: string;
+    srcImagen: string;
+    imagenNombre: string;
+    imagenType: string;
+    imagenFile: string;
+    PaginaService: string;
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: PaginaService, private modalService: NgbModal) {
         this.toastr.setRootViewContainerRef(vcr);
     }
+    CodificarArchivo(event) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.imagenNombre = file.name;
+                this.imagenType = file.type;
+                this.imagenFile = reader.result.split(',')[1];
+                this.srcImagen = 'data:' + this.imagenType + ';base64,' + this.imagenFile;
+            };
+        }
+    }
+    insertarPagina(entidadNueva: Pagina): void {
 
+        entidadNueva.nombreArchivo = this.imagenNombre;
+        entidadNueva.adjunto = this.imagenFile;
+        entidadNueva.tipoArchivo = this.imagenType;
+        console.log('id de la foto ' + entidadNueva.nombreArchivo);
+        console.log('id de la pagina ' + entidadNueva.tipoArchivo);
+        console.log('es publico? ' + entidadNueva.adjunto);
+
+        this.busy = this.dataService.insertarPagina(entidadNueva)
+            .then(respuesta => {
+                if (respuesta) {
+                    this.toastr.success('La creación fue exitosa', 'Creación');
+                } else {
+                    this.toastr.warning('Se produjo un error', 'Creación');
+                }
+                this.refresh();
+            })
+            .catch(error => {
+                this.toastr.warning('Se produjo un error', 'Creación');
+            });
+    }
     open(content, nuevo) {
         if (nuevo) {
             this.resetEntidadSeleccionada();
@@ -155,12 +195,7 @@ export class PaginaComponent implements OnInit {
     }
 
     aceptar(): void {
-        if (!this.isValid(this.entidadSeleccionada)) { return; }
-        if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-            this.add(this.entidadSeleccionada);
-        } else {
-            this.update(this.entidadSeleccionada);
-        }
+        this.insertarPagina(this.entidadSeleccionada);
         this.cerrarVentanaEdicion();
     }
 
@@ -247,6 +282,7 @@ export class PaginaComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.entidadSeleccionada = this.crearEntidad();
         this.paginaActual = 1;
         this.registrosPorPagina = 5;
         this.refresh();

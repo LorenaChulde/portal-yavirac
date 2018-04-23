@@ -6,4 +6,7 @@ export class Pagina {
    idFoto: number;
    idMenu: number;
    descripcion: string;
+   tipoArchivo: string;
+   nombreArchivo: string;
+   adjunto: string;
 }

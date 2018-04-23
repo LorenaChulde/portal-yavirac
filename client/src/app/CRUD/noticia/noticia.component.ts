@@ -53,16 +53,6 @@ CodificarArchivo(event) {
             };
         }
     }
-   /* insertarImagen() {
-        console.log(this.imagenFile);
-        console.log(this.imagenType);
-        console.log(this.imagenNombre);
-        const imagenNoticia = new Noticia();
-        imagenNoticia.adjunto = this.imagenFile;
-        imagenNoticia.nombreArchivo = this.imagenNombre;
-        imagenNoticia.tipoArchivo = this.imagenType;
-
-    }*/
     insertarNoticia(entidadNueva: Noticia): void {
 
         entidadNueva.nombreArchivo = this.imagenNombre;
@@ -201,14 +191,6 @@ isValid(entidadPorEvaluar: Noticia): boolean {
 }
 
 aceptar(): void {
-    // if(!this.isValid(this.entidadSeleccionada)) { return; }
-    //  if(this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-    //    this.add(this.entidadSeleccionada);
-    // } else {
-    //    this.update(this.entidadSeleccionada);
-    // }
-    //  this.cerrarVentanaEdicion();
-    // this.insertarImagen();
     this.insertarNoticia(this.entidadSeleccionada);
     this.cerrarVentanaEdicion();
 }
