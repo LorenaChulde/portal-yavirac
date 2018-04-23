@@ -5,9 +5,9 @@ class Controlador_noticia extends Controlador_Base
 {
    function crear($args)
    {
-      $noticia = new Noticia($args["id"],$args["descripcion"],$args["idFoto"],$args["idPagina"],$args["esPublico"]);
-      $sql = "INSERT INTO Noticia (descripcion,idFoto,idPagina,esPublico) VALUES (?,?,?,?);";
-      $parametros = array($noticia->descripcion,$noticia->idFoto,$noticia->idPagina,$noticia->esPublico);
+      $noticia = new Noticia($args["id"],$args["descripcion"],$args["idFoto"],$args["idPagina"],$args["esPublico"],$args["titulo"],$args["fecha"]);
+      $sql = "INSERT INTO Noticia (descripcion,idFoto,idPagina,esPublico) VALUES (?,?,?,?,?,?);";
+      $parametros = array($noticia->descripcion,$noticia->idFoto,$noticia->idPagina,$noticia->esPublico,$noticia->titulo,$noticia->fecha);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

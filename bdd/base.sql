@@ -1,4 +1,3 @@
-DROP DATABASE yaviracweb;
 CREATE DATABASE yaviracweb DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
 USE yaviracweb ;
 
@@ -41,6 +40,8 @@ CREATE TABLE AsiganacionLink (
 
 CREATE TABLE Noticia (
   id INT NOT NULL AUTO_INCREMENT ,
+  titulo VARCHAR(50) NULL,
+  fecha DATE NULL,
   descripcion VARCHAR(50) NULL,
   idFoto INT NULL,
   idPagina INT NULL,
@@ -58,7 +59,6 @@ CREATE TABLE Link (
 
 CREATE TABLE Imagen (
   id INT NOT NULL AUTO_INCREMENT ,
-  idPersona INT NULL,
   tipoArchivo VARCHAR(255) NULL,
   nombreArchivo VARCHAR(255) NULL,
   adjunto LONGBLOB NULL,
