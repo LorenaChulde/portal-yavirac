@@ -109,12 +109,6 @@
       <div class="modal-body">
          <form>
          <div class="form-group row">
-            <label for="id" class="col-sm-4 col-form-label">Identificador</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
-            </div>
-         </div>
-         <div class="form-group row">
             <label for="descripcion" class="col-sm-4 col-form-label">descripcion</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
@@ -134,8 +128,13 @@
          </div>
          <div class="form-group row">
             <label for="esPublico" class="col-sm-4 col-form-label">esPublico</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="esPublico" name="esPublico" placeholder="esPublico" [(ngModel)]="entidadSeleccionada.esPublico">
+            <div class="col-sm-4s">
+            <select class="form-control" id="esPublico" name="esPublico" 
+            [(ngModel)]="entidadSeleccionada.esPublico">
+            <option value"-1" selected>Seleccione...</option>
+            <option value"1" selected>Si</option>
+            <option value"0" selected>No</option>
+            </select>
             </div>
          </div>
          </form>
