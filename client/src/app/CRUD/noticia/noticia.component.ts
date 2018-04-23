@@ -34,6 +34,7 @@ export class NoticiaComponent implements OnInit {
     imagenNombre: string;
     imagenType: string;
     imagenFile: string;
+    NoticiaService: string;
 
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: NoticiaService, private modalService: NgbModal) {
@@ -52,7 +53,7 @@ CodificarArchivo(event) {
             };
         }
     }
-    insertarImagen() {
+   /* insertarImagen() {
         console.log(this.imagenFile);
         console.log(this.imagenType);
         console.log(this.imagenNombre);
@@ -60,22 +61,17 @@ CodificarArchivo(event) {
         imagenNoticia.adjunto = this.imagenFile;
         imagenNoticia.nombreArchivo = this.imagenNombre;
         imagenNoticia.tipoArchivo = this.imagenType;
-        this.busy = this.dataService.insertarNoticia(imagenNoticia)
-        .then(respuesta => {
-        this.ngOnInit();
-        })
-        .catch(error => {
-            this.toastr.warning('Se produjo un error', 'Actualización');
-        });
-    }
+
+    }*/
     insertarNoticia(entidadNueva: Noticia): void {
-        console.log('descripcion ' + entidadNueva.descripcion);
-        console.log('id de la foto ' + entidadNueva.idFoto);
-        console.log('id de la pagina ' + entidadNueva.idPagina);
-        console.log('es publico? ' + entidadNueva.esPublico);
-        console.log('titulo de la noticia ' + entidadNueva.titulo);
-        console.log('fecha ' + entidadNueva.fecha);
-        this.insertarImagen();
+
+        entidadNueva.nombreArchivo = this.imagenNombre;
+        entidadNueva.adjunto = this.imagenFile;
+        entidadNueva.tipoArchivo = this.imagenType;
+        console.log('id de la foto ' + entidadNueva.nombreArchivo);
+        console.log('id de la pagina ' + entidadNueva.tipoArchivo);
+        console.log('es publico? ' + entidadNueva.adjunto);
+
         this.busy = this.dataService.insertarNoticia(entidadNueva)
             .then(respuesta => {
                 if (respuesta) {
@@ -96,11 +92,11 @@ CodificarArchivo(event) {
         this.modalService.open(content)
             .result
             .then((result => {
-                if (result == "save") {
+                if (result === 'save') {
                     this.aceptar();
                 }
             }), (result => {
-                //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+                // Esto se ejecuta si la ventana se cierra sin aceptar los cambios
             }));
     }
 
@@ -132,7 +128,7 @@ CodificarArchivo(event) {
         this.busy = this.dataService
             .getAll()
             .then(entidadesRecuperadas => {
-                this.entidades = entidadesRecuperadas
+                this.entidades = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -147,7 +143,7 @@ CodificarArchivo(event) {
         this.busy = this.dataService
             .getNoticiaFoto()
             .then(entidadesRecuperadas => {
-                this.entidadesNoticiaFoto = entidadesRecuperadas
+                this.entidadesNoticiaFoto = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -162,7 +158,7 @@ CodificarArchivo(event) {
         this.busy = this.dataService
             .getNoticiaPagina()
             .then(entidadesRecuperadas => {
-                this.entidadesNoticiaPagina = entidadesRecuperadas
+                this.entidadesNoticiaPagina = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -177,7 +173,7 @@ getPagina(pagina: number, tamanoPagina: number): void {
     this.busy = this.dataService
         .getPagina(pagina, tamanoPagina)
         .then(entidadesRecuperadas => {
-            this.entidades = entidadesRecuperadas
+            this.entidades = entidadesRecuperadas;
             if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                 this.toastr.success('¡No hay datos!', 'Consulta');
             } else {
@@ -196,7 +192,7 @@ getNumeroPaginas(tamanoPagina: number): void {
             this.paginaUltima = respuesta.paginas;
         })
         .catch(error => {
-            //Error al leer las paginas
+            // Error al leer las paginas
         });
 }
 
@@ -205,13 +201,16 @@ isValid(entidadPorEvaluar: Noticia): boolean {
 }
 
 aceptar(): void {
-    if(!this.isValid(this.entidadSeleccionada)) { return; }
-      if(this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-        this.add(this.entidadSeleccionada);
-    } else {
-        this.update(this.entidadSeleccionada);
-    }
-      this.cerrarVentanaEdicion();
+    // if(!this.isValid(this.entidadSeleccionada)) { return; }
+    //  if(this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
+    //    this.add(this.entidadSeleccionada);
+    // } else {
+    //    this.update(this.entidadSeleccionada);
+    // }
+    //  this.cerrarVentanaEdicion();
+    // this.insertarImagen();
+    this.insertarNoticia(this.entidadSeleccionada);
+    this.cerrarVentanaEdicion();
 }
 
 crearEntidad(): Noticia {
@@ -278,14 +277,14 @@ getPaginaPrimera(): void {
 }
 
 getPaginaAnterior(): void {
-    if(this.paginaActual> 1) {
+    if (this.paginaActual > 1) {
         this.paginaActual = this.paginaActual - 1;
         this.refresh();
     }
 }
 
 getPaginaSiguiente(): void {
-    if(this.paginaActual <this.paginaUltima) {
+    if (this.paginaActual < this.paginaUltima) {
         this.paginaActual = this.paginaActual + 1;
         this.refresh();
     }
@@ -297,6 +296,7 @@ getPaginaUltima(): void {
 }
 
 ngOnInit() {
+    this.entidadSeleccionada = this.crearEntidad();
     this.paginaActual = 1;
     this.registrosPorPagina = 5;
     this.refresh();
