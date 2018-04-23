@@ -4,4 +4,9 @@ export class Noticia {
    idFoto: number;
    idPagina: number;
    esPublico: number;
+   tipoArchivo: string;
+   nombreArchivo: string;
+   adjunto: string;
+   titulo: string;
+   fecha: Date;
 }

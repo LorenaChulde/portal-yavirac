@@ -16,6 +16,29 @@ class Controlador_noticia extends Controlador_Base
       }
    }
 
+   function insertar_imagen($args)
+   {
+      $sql= "INSERT INTO Imagen (nombreArchivo, tipoArchivo, adjunto) VALUES (?,?,?);";
+      $parametros= array($args['nombreArchivo'],$args['tipoArchivo'],$args['adjunto']);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      if(is_null($respuesta[0])){
+         return true;
+       }else{
+         return false;
+            }
+   }
+   function insertar_noticia($args)
+   {
+      $this->insertar_imagen($args);
+      $sql= "INSERT INTO Noticia (descripcion,idFoto,idPagina,esPublico,titulo,fecha) VALUES (?,?,?,?,?,?);";
+      $parametros= array($args['descripcion'],$args['idFoto'],$args['idPagina'],$args['esPublico'],$args['titulo'],$args['fecha']);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      if(is_null($respuesta[0])){
+         return true;
+       }else{
+         return false;
+            }
+   }
    function actualizar($args)
    {
       $noticia = new Noticia($args["id"],$args["descripcion"],$args["idFoto"],$args["idPagina"],$args["esPublico"]);
