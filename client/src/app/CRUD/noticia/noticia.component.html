@@ -66,7 +66,7 @@
                 <strong>Es Público ?</strong>
               </span>
             </th>
-           
+
           </tr>
         </thead>
         <tbody>
@@ -81,7 +81,7 @@
             <td>{{actual.idFoto}}</td>
             <td>{{actual.idPagina}}</td>
             <td>{{actual.esPublico}}</td>
- 
+
           </tr>
         </tbody>
       </table>
@@ -128,21 +128,17 @@
     <div class="modal-body">
       <form>
         <div class="form-group row">
-          <label for="id" class="col-sm-4 col-form-label">Identificador</label>
-          <div class="col-sm-8">
-            <input type="text" readonly class="form-control" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
-          </div>
-        </div>
-        <div class="form-group row">
           <label for="titulo" class="col-sm-4 col-form-label">Titulo</label>
           <div class="col-sm-8">
-            <input type="text" readonly class="form-control" id="titulo" name="titulo" [(ngModel)]="entidadSeleccionada.titulo">
+            <input type="text"  class="form-control" id="titulo" name="titulo"
+            [(ngModel)]="entidadSeleccionada.titulo">
           </div>
         </div>
         <div class="form-group row">
           <label for="fecha" class="col-sm-4 col-form-label">Fecha</label>
           <div class="col-sm-8">
-            <input type="date" readonly class="form-control" id="fecha" name="fecha" [(ngModel)]="entidadSeleccionada.fecha">
+            <input type="date"  class="form-control" id="fecha" name="fecha"
+            [(ngModel)]="entidadSeleccionada.fecha">
           </div>
         </div>
         <div class="form-group row">
@@ -154,12 +150,14 @@
         <div class="form-group row">
           <label for="idFoto" class="col-sm-4 col-form-label">Imagen</label>
           <div class="col-sm-8">
-            <select class="form-control" id="idFoto" name="idFoto" [(ngModel)]="entidadSeleccionada.idFoto">
-              <option value="" selected>Seleccione...</option>
-              <option *ngFor="let foto of entidadesNoticiaFoto" value={{foto.id}}>{{foto.nombreArchivo}}</option>
-            </select>
+            <input type="file" class="form-control" id="imagen" placeholder="Imagen" #fileInput (change)="CodificarArchivo($event)" accept="image/*">
           </div>
         </div>
+        <div class="form-group row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
+                    <img src="{{srcImagen}}" class="img-circle" width="150px" (click)="fileInput.click()">
+                </div>
+            </div>
         <div class="form-group row">
           <label for="idPagina" class="col-sm-4 col-form-label">Página</label>
           <div class="col-sm-8">
@@ -172,7 +170,12 @@
         <div class="form-group row">
           <label for="esPublico" class="col-sm-4 col-form-label">Es Público ?</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="esPublico" name="esPublico" placeholder="Público" [(ngModel)]="entidadSeleccionada.esPublico">
+                <select class="form-control" id="esPublico" name="esPublico"
+                 [(ngModel)]="entidadSeleccionada.esPublico">
+                        <option value="-1" selected>Seleccione...</option>
+                        <option value="1" selected>Si</option>
+                        <option value="0" selected>No</option>
+                </select>
           </div>
         </div>
       </form>
