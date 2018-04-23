@@ -23,6 +23,14 @@ export class NoticiaService {
         return this.urlBase;
     }
 
+    insertarNoticia(entidadTransporte: Noticia): Promise<boolean> {
+        return this.http
+            .post(this.urlBase + '/insertar_noticia', JSON.stringify(entidadTransporte))
+            .toPromise()
+            .then(response => response.json() as Noticia[])
+            .catch(this.handleError);
+    }
+
     getAll(): Promise<Noticia[]> {
         return this.http.get(this.urlBase + '/leer').toPromise().then(response => response.json() as Noticia[]).catch(this.handleError);
     }

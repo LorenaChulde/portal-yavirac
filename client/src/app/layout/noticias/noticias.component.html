@@ -1,124 +1,44 @@
 <div class="container">
     <div *ngFor="let actual of noticia">
-        <div class="container" style="background-color:rgb(255,255,255)">
-            <div class="row">
-                <div class="col-12">
-                    <div class="container">
-                        <br/>
-                        <div class="col-12">
-                            <div class="alert alert-white border-dark" role="alert" align="center">
-                                <h1>{{actual.titulo}}</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="col-12 alert alert-secondary bg-light border-dark">
-                                        <h4>{{actual.titulo}}</h4>
-                                        <p>{{actual.descripcion}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="col-12">
+                <div class="alert alert-primary" role="alert" align="CENTER">
+                    <H1>{{actual.titulo}}</H1>
+                </div>
+                <div class="card-body">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <div class="card-group">
-                                    <div class="card alert alert-secondary bg-light border-dark">
-                                        <div>
-                                            <img class="card-img-top">aqui la foto {{actual.idFoto}}
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{actual.titulo}}</h5>
-                                            <p class="card-text">{{actual.descripcion}}</p>
-                                        </div>
-                                        <div class="card-footer alert alert-secondary bg-light">
-                                            <small class="text-muted">{{actual.fecha}}</small>
-                                        </div>
-                                    </div>
-                                    <div class="card alert alert-secondary bg-light border-dark">
-                                        <div>
-                                            <img class="card-img-top">aqui la foto {{actual.idFoto}}
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{actual.titulo}}</h5>
-                                            <p class="card-text">{{actual.descripcion}}</p>
-                                        </div>
-                                        <div class="card-footer alert alert-secondary bg-light">
-                                            <small class="text-muted">{{actual.fecha}}</small>
-                                        </div>
-                                    </div>
+                                <div class="col-12 alert alert-secondary bg-light border-dark">
+                                    <p>{{actual.descripcion}}</p>
+                                    <h6>{{actual.fecha}}</h6>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="p-3 mb-2 bg-dark text-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4">
-                        <td style="color:#fcfcfc">
-                            <div class="sp-title-block">
-                                <h3>Contacto</h3>
-                            </div>
-                            <div class="sp-contacts-widget ">
-                                <ul>
-                                    <li>
-                                        <i class="ion-android-pin"></i> Dirección: Ambato y García Moreno </li>
-                                    <li>
-                                        <i class="ion-android-call"></i> Teléfono: 0995225249</li>
-                                    <li>
-                                        <i class="ion-at"></i> Correo electrónico: info@yavirac.edu.ec</li>
-                                </ul>
-                            </div>
-                        </td>
-                    </div>
-                    <div class="col-2">
-
-                    </div>
-                    <div class="col-6">
-
-                        <td style="color:#ffffff" align="left">
-                            <div class="sp-contacts-widget ">
-                                <ul>
-                                    <br>
-                                    <br>
-                                    <li>
-                                        <i class="ion-information-circled"></i> Trabajamos de lunes a viernes.</li>
-                                    <li>
-                                        <i class="ion-clock"></i> Nuestro horario de atención es de 07:00 a 16:00</li>
-                                </ul>
-                            </div>
-                            <div class="pull-right">
-
-                            </div>
-                        </td>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-7">
-                            © 2018 INSTITUTO SUPERIOR YAVIRAC. Todos los derechos reservados.
-                        </div>
-                        <div class="col-5">
+                        <div class="col-12">
+                            <div class="card-group">
+                                <div class="card alert alert-secondary bg-light border-dark">
+                                    <div>
+                                        <img class="card-img-top">aqui la foto {{actual.idFoto}}
+                                    </div>
 
-                            <div class="redes-footer" ALIGN="left">
-                                ENCUENTRANOS EN LAS REDES:
-                                <a href="https://www.facebook.com/">
-                                    <img src="../assets/images/facebook.png" width="6%" height="auto">
-                                </a>
-                                <a href="https://twitter.com/">
-                                    <img src="../assets/images/twitter.png">
-                                </a>
-                                <a href="https://www.youtube.com/channel/UCez91Dz7oFrWrApbBCccZag">
-                                    <img src="../assets/images/youtube icon.png">
-                                </a>
+                                    <div class="card-footer alert alert-secondary">
+                                        <small class="text-muted">{{actual.fecha}}</small>
+                                    </div>
+                                </div>
+                                <div class="card alert alert-secondary bg-light border-dark">
+                                    <div>
+                                        <img class="card-img-top">aqui la pagina {{actual.idPagina}}
+                                    </div>
+
+                                    <div class="card-footer alert alert-secondary">
+                                        <small class="text-muted">{{actual.fecha}}</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -29,11 +29,66 @@ export class NoticiaComponent implements OnInit {
     paginaUltima: number;
     registrosPorPagina: number;
     esVisibleVentanaEdicion: boolean;
+    imagenNoticia: string;
+    srcImagen: string;
+    imagenNombre: string;
+    imagenType: string;
+    imagenFile: string;
+
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: NoticiaService, private modalService: NgbModal) {
         this.toastr.setRootViewContainerRef(vcr);
     }
-
+CodificarArchivo(event) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.imagenNombre = file.name;
+                this.imagenType = file.type;
+                this.imagenFile = reader.result.split(',')[1];
+                this.srcImagen = 'data:' + this.imagenType + ';base64,' + this.imagenFile;
+            };
+        }
+    }
+    insertarImagen() {
+        console.log(this.imagenFile);
+        console.log(this.imagenType);
+        console.log(this.imagenNombre);
+        const imagenNoticia = new Noticia();
+        imagenNoticia.adjunto = this.imagenFile;
+        imagenNoticia.nombreArchivo = this.imagenNombre;
+        imagenNoticia.tipoArchivo = this.imagenType;
+        this.busy = this.dataService.insertarNoticia(imagenNoticia)
+        .then(respuesta => {
+        this.ngOnInit();
+        })
+        .catch(error => {
+            this.toastr.warning('Se produjo un error', 'Actualización');
+        });
+    }
+    insertarNoticia(entidadNueva: Noticia): void {
+        console.log('descripcion ' + entidadNueva.descripcion);
+        console.log('id de la foto ' + entidadNueva.idFoto);
+        console.log('id de la pagina ' + entidadNueva.idPagina);
+        console.log('es publico? ' + entidadNueva.esPublico);
+        console.log('titulo de la noticia ' + entidadNueva.titulo);
+        console.log('fecha ' + entidadNueva.fecha);
+        this.insertarImagen();
+        this.busy = this.dataService.insertarNoticia(entidadNueva)
+            .then(respuesta => {
+                if (respuesta) {
+                    this.toastr.success('La creación fue exitosa', 'Creación');
+                } else {
+                    this.toastr.warning('Se produjo un error', 'Creación');
+                }
+                this.refresh();
+            })
+            .catch(error => {
+                this.toastr.warning('Se produjo un error', 'Creación');
+            });
+    }
     open(content, nuevo) {
         if (nuevo) {
             this.resetEntidadSeleccionada();
