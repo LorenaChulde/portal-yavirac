@@ -153,10 +153,7 @@
         <div class="form-group row">
           <label for="idFoto" class="col-sm-4 col-form-label">Imagen</label>
           <div class="col-sm-8">
-            <select class="form-control" id="idFoto" name="idFoto" [(ngModel)]="entidadSeleccionada.idFoto">
-              <option value="" selected>Seleccione...</option>
-              <option *ngFor="let Imagen of entidadesPaginaImagen" value={{Imagen.id}}>{{Imagen.nombreArchivo}}</option>
-            </select>
+            <input type="file" class="form-control" id="imagen" placeholder="Imagen" #fileInput (change)="CodificarArchivo($event)" accept="image/*">
           </div>
         </div>
         <div class="form-group row">
