@@ -53,27 +53,6 @@ export class NoticiaComponent implements OnInit {
             };
         }
     }
-   /* insertarImagen() {
-        console.log(this.imagenFile);
-        console.log(this.imagenType);
-        console.log(this.imagenNombre);
-        const imagenNoticia = new Noticia();
-        imagenNoticia.adjunto = this.imagenFile;
-        imagenNoticia.nombreArchivo = this.imagenNombre;
-        imagenNoticia.tipoArchivo = this.imagenType;
-<<<<<<< HEAD
-        this.busy = this.dataService.insertarNoticia(imagenNoticia)
-            .then(respuesta => {
-                this.ngOnInit();
-            })
-            .catch(error => {
-                this.toastr.warning('Se produjo un error', 'Actualización');
-            });
-    }
-=======
-
-    }*/
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
     insertarNoticia(entidadNueva: Noticia): void {
 
         entidadNueva.nombreArchivo = this.imagenNombre;
@@ -170,7 +149,6 @@ export class NoticiaComponent implements OnInit {
             .getNoticiaPagina()
             .then(entidadesRecuperadas => {
                 this.entidadesNoticiaPagina = entidadesRecuperadas;
-<<<<<<< HEAD
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -186,8 +164,6 @@ export class NoticiaComponent implements OnInit {
             .getPagina(pagina, tamanoPagina)
             .then(entidadesRecuperadas => {
                 this.entidades = entidadesRecuperadas;
-=======
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -198,7 +174,6 @@ export class NoticiaComponent implements OnInit {
                 this.toastr.success('Se produjo un error', 'Consulta');
             });
     }
-<<<<<<< HEAD
 
     getNumeroPaginas(tamanoPagina: number): void {
         this.busy = this.dataService
@@ -210,63 +185,15 @@ export class NoticiaComponent implements OnInit {
                 // Error al leer las paginas
             });
     }
-=======
-getPagina(pagina: number, tamanoPagina: number): void {
-    this.busy = this.dataService
-        .getPagina(pagina, tamanoPagina)
-        .then(entidadesRecuperadas => {
-            this.entidades = entidadesRecuperadas;
-            if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-                this.toastr.success('¡No hay datos!', 'Consulta');
-            } else {
-                this.toastr.success('La consulta fue exitosa', 'Consulta');
-            }
-        })
-        .catch(error => {
-            this.toastr.success('Se produjo un error', 'Consulta');
-        });
-}
-
-getNumeroPaginas(tamanoPagina: number): void {
-    this.busy = this.dataService
-        .getNumeroPaginas(tamanoPagina)
-        .then(respuesta => {
-            this.paginaUltima = respuesta.paginas;
-        })
-        .catch(error => {
-            // Error al leer las paginas
-        });
-}
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
 
     isValid(entidadPorEvaluar: Noticia): boolean {
         return true;
     }
 
-<<<<<<< HEAD
     aceptar(): void {
-        if (!this.isValid(this.entidadSeleccionada)) { return; }
-        if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-            this.add(this.entidadSeleccionada);
-        } else {
-            this.update(this.entidadSeleccionada);
-        }
+        this.insertarNoticia(this.entidadSeleccionada);
         this.cerrarVentanaEdicion();
     }
-=======
-aceptar(): void {
-    // if(!this.isValid(this.entidadSeleccionada)) { return; }
-    //  if(this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-    //    this.add(this.entidadSeleccionada);
-    // } else {
-    //    this.update(this.entidadSeleccionada);
-    // }
-    //  this.cerrarVentanaEdicion();
-    // this.insertarImagen();
-    this.insertarNoticia(this.entidadSeleccionada);
-    this.cerrarVentanaEdicion();
-}
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
 
     crearEntidad(): Noticia {
         const nuevoNoticia = new Noticia();
@@ -326,45 +253,15 @@ aceptar(): void {
         this.entidadSeleccionada = this.crearEntidad();
     }
 
-<<<<<<< HEAD
-    getPaginaPrimera(): void {
-        this.paginaActual = 1;
-=======
-getPaginaAnterior(): void {
-    if (this.paginaActual > 1) {
-        this.paginaActual = this.paginaActual - 1;
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
-        this.refresh();
-    }
-
-<<<<<<< HEAD
     getPaginaAnterior(): void {
         if (this.paginaActual > 1) {
             this.paginaActual = this.paginaActual - 1;
             this.refresh();
         }
-=======
-getPaginaSiguiente(): void {
-    if (this.paginaActual < this.paginaUltima) {
-        this.paginaActual = this.paginaActual + 1;
-        this.refresh();
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
     }
 
-    getPaginaSiguiente(): void {
-        if (this.paginaActual < this.paginaUltima) {
-            this.paginaActual = this.paginaActual + 1;
-            this.refresh();
-        }
-    }
-
-<<<<<<< HEAD
-    getPaginaUltima(): void {
-        this.paginaActual = this.paginaUltima;
-        this.refresh();
-    }
-
-    ngOnInit() {
+    ngOnInit(){
+        this.entidadSeleccionada = this.crearEntidad();
         this.paginaActual = 1;
         this.registrosPorPagina = 5;
         this.refresh();
@@ -376,18 +273,3 @@ getPaginaSiguiente(): void {
         this.entidadSeleccionada = entidadActual;
     }
 }
-=======
-ngOnInit() {
-    this.entidadSeleccionada = this.crearEntidad();
-    this.paginaActual = 1;
-    this.registrosPorPagina = 5;
-    this.refresh();
-    this.getNoticiaFoto();
-    this.getNoticiaPagina();
-}
-
-onSelect ( entidadActual: Noticia): void {
-    this.entidadSeleccionada = entidadActual;
-}
-}
->>>>>>> c053aa0d98361c14ba7f933d1546e1d78626c064
