@@ -260,7 +260,7 @@ export class NoticiaComponent implements OnInit {
         }
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.entidadSeleccionada = this.crearEntidad();
         this.paginaActual = 1;
         this.registrosPorPagina = 5;
