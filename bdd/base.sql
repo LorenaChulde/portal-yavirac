@@ -40,12 +40,12 @@ CREATE TABLE AsiganacionLink (
 
 CREATE TABLE Noticia (
   id INT NOT NULL AUTO_INCREMENT ,
-  titulo VARCHAR(50) NULL,
-  fecha DATE NULL,
   descripcion VARCHAR(50) NULL,
   idFoto INT NULL,
   idPagina INT NULL,
   esPublico BOOLEAN NULL,
+  titulo VARCHAR(50) NULL,
+  fecha DATE NULL,
   PRIMARY KEY (id)
 );
 
