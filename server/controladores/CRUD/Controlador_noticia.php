@@ -37,8 +37,7 @@ class Controlador_noticia extends Controlador_Base
       VALUES (?,?,?,?,?,?);";
       $parametros= array(
                    $args['descripcion'],
-                   //$args['idFoto'],
-                   1,
+                   $args['idFoto'],
                    $args['idPagina'],
                    $args['esPublico'],
                    $args['titulo'],
