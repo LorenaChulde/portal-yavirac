@@ -39,7 +39,7 @@ export class NoticiaComponent implements OnInit {
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: NoticiaService, private modalService: NgbModal) {
         this.toastr.setRootViewContainerRef(vcr);
     }
-CodificarArchivo(event) {
+    CodificarArchivo(event) {
         const reader = new FileReader();
         if (event.target.files && event.target.files.length > 0) {
             const file = event.target.files[0];
@@ -61,12 +61,12 @@ CodificarArchivo(event) {
         imagenNoticia.nombreArchivo = this.imagenNombre;
         imagenNoticia.tipoArchivo = this.imagenType;
         this.busy = this.dataService.insertarNoticia(imagenNoticia)
-        .then(respuesta => {
-        this.ngOnInit();
-        })
-        .catch(error => {
-            this.toastr.warning('Se produjo un error', 'Actualización');
-        });
+            .then(respuesta => {
+                this.ngOnInit();
+            })
+            .catch(error => {
+                this.toastr.warning('Se produjo un error', 'Actualización');
+            });
     }
     insertarNoticia(entidadNueva: Noticia): void {
         console.log('descripcion ' + entidadNueva.descripcion);
@@ -96,11 +96,11 @@ CodificarArchivo(event) {
         this.modalService.open(content)
             .result
             .then((result => {
-                if (result == "save") {
+                if (result === 'save') {
                     this.aceptar();
                 }
             }), (result => {
-                //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+                // Esto se ejecuta si la ventana se cierra sin aceptar los cambios
             }));
     }
 
@@ -132,7 +132,7 @@ CodificarArchivo(event) {
         this.busy = this.dataService
             .getAll()
             .then(entidadesRecuperadas => {
-                this.entidades = entidadesRecuperadas
+                this.entidades = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -147,7 +147,7 @@ CodificarArchivo(event) {
         this.busy = this.dataService
             .getNoticiaFoto()
             .then(entidadesRecuperadas => {
-                this.entidadesNoticiaFoto = entidadesRecuperadas
+                this.entidadesNoticiaFoto = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -162,7 +162,7 @@ CodificarArchivo(event) {
         this.busy = this.dataService
             .getNoticiaPagina()
             .then(entidadesRecuperadas => {
-                this.entidadesNoticiaPagina = entidadesRecuperadas
+                this.entidadesNoticiaPagina = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -173,138 +173,138 @@ CodificarArchivo(event) {
                 this.toastr.success('Se produjo un error', 'Consulta');
             });
     }
-getPagina(pagina: number, tamanoPagina: number): void {
-    this.busy = this.dataService
-        .getPagina(pagina, tamanoPagina)
-        .then(entidadesRecuperadas => {
-            this.entidades = entidadesRecuperadas
-            if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-                this.toastr.success('¡No hay datos!', 'Consulta');
-            } else {
-                this.toastr.success('La consulta fue exitosa', 'Consulta');
-            }
-        })
-        .catch(error => {
-            this.toastr.success('Se produjo un error', 'Consulta');
-        });
-}
-
-getNumeroPaginas(tamanoPagina: number): void {
-    this.busy = this.dataService
-        .getNumeroPaginas(tamanoPagina)
-        .then(respuesta => {
-            this.paginaUltima = respuesta.paginas;
-        })
-        .catch(error => {
-            //Error al leer las paginas
-        });
-}
-
-isValid(entidadPorEvaluar: Noticia): boolean {
-    return true;
-}
-
-aceptar(): void {
-    if(!this.isValid(this.entidadSeleccionada)) { return; }
-      if(this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-        this.add(this.entidadSeleccionada);
-    } else {
-        this.update(this.entidadSeleccionada);
+    getPagina(pagina: number, tamanoPagina: number): void {
+        this.busy = this.dataService
+            .getPagina(pagina, tamanoPagina)
+            .then(entidadesRecuperadas => {
+                this.entidades = entidadesRecuperadas;
+                if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+                    this.toastr.success('¡No hay datos!', 'Consulta');
+                } else {
+                    this.toastr.success('La consulta fue exitosa', 'Consulta');
+                }
+            })
+            .catch(error => {
+                this.toastr.success('Se produjo un error', 'Consulta');
+            });
     }
-      this.cerrarVentanaEdicion();
-}
 
-crearEntidad(): Noticia {
-    const nuevoNoticia = new Noticia();
-    nuevoNoticia.id = 0;
-    return nuevoNoticia;
-}
+    getNumeroPaginas(tamanoPagina: number): void {
+        this.busy = this.dataService
+            .getNumeroPaginas(tamanoPagina)
+            .then(respuesta => {
+                this.paginaUltima = respuesta.paginas;
+            })
+            .catch(error => {
+                // Error al leer las paginas
+            });
+    }
 
-add(entidadNueva: Noticia): void {
-    this.busy = this.dataService.create(entidadNueva)
-        .then(respuesta => {
-            if (respuesta) {
-                this.toastr.success('La creación fue exitosa', 'Creación');
-            } else {
+    isValid(entidadPorEvaluar: Noticia): boolean {
+        return true;
+    }
+
+    aceptar(): void {
+        if (!this.isValid(this.entidadSeleccionada)) { return; }
+        if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
+            this.add(this.entidadSeleccionada);
+        } else {
+            this.update(this.entidadSeleccionada);
+        }
+        this.cerrarVentanaEdicion();
+    }
+
+    crearEntidad(): Noticia {
+        const nuevoNoticia = new Noticia();
+        nuevoNoticia.id = 0;
+        return nuevoNoticia;
+    }
+
+    add(entidadNueva: Noticia): void {
+        this.busy = this.dataService.create(entidadNueva)
+            .then(respuesta => {
+                if (respuesta) {
+                    this.toastr.success('La creación fue exitosa', 'Creación');
+                } else {
+                    this.toastr.warning('Se produjo un error', 'Creación');
+                }
+                this.refresh();
+            })
+            .catch(error => {
                 this.toastr.warning('Se produjo un error', 'Creación');
-            }
-            this.refresh();
-        })
-        .catch(error => {
-            this.toastr.warning('Se produjo un error', 'Creación');
-        });
-}
+            });
+    }
 
-update(entidadParaActualizar: Noticia): void {
-    this.busy = this.dataService.update(entidadParaActualizar)
-        .then(respuesta => {
-            if (respuesta) {
-                this.toastr.success('La actualización fue exitosa', 'Actualización');
-            } else {
+    update(entidadParaActualizar: Noticia): void {
+        this.busy = this.dataService.update(entidadParaActualizar)
+            .then(respuesta => {
+                if (respuesta) {
+                    this.toastr.success('La actualización fue exitosa', 'Actualización');
+                } else {
+                    this.toastr.warning('Se produjo un error', 'Actualización');
+                }
+                this.refresh();
+            })
+            .catch(error => {
                 this.toastr.warning('Se produjo un error', 'Actualización');
-            }
-            this.refresh();
-        })
-        .catch(error => {
-            this.toastr.warning('Se produjo un error', 'Actualización');
-        });
-}
+            });
+    }
 
-delete (entidadParaBorrar: Noticia): void {
-    this.busy = this.dataService.remove(entidadParaBorrar.id)
-        .then(respuesta => {
-            if (respuesta) {
-                this.toastr.success('La eliminación fue exitosa', 'Eliminación');
-            } else {
-                this.toastr.warning('Se produjo un error', 'Eliminación');
-            }
-            this.refresh();
-        })
-        .catch(error => {
-            this.toastr.success('Se produjo un error', 'Eliminación');
-        });
-}
+    delete(entidadParaBorrar: Noticia): void {
+        this.busy = this.dataService.remove(entidadParaBorrar.id)
+            .then(respuesta => {
+                if (respuesta) {
+                    this.toastr.success('La eliminación fue exitosa', 'Eliminación');
+                } else {
+                    this.toastr.warning('Se produjo un error', 'Eliminación');
+                }
+                this.refresh();
+            })
+            .catch(error => {
+                this.toastr.success('Se produjo un error', 'Eliminación');
+            });
+    }
 
-refresh(): void {
-    this.getNumeroPaginas(this.registrosPorPagina);
-    this.getPagina(this.paginaActual, this.registrosPorPagina);
-    this.entidades = Noticia[0];
-    this.entidadSeleccionada = this.crearEntidad();
-}
+    refresh(): void {
+        this.getNumeroPaginas(this.registrosPorPagina);
+        this.getPagina(this.paginaActual, this.registrosPorPagina);
+        this.entidades = Noticia[0];
+        this.entidadSeleccionada = this.crearEntidad();
+    }
 
-getPaginaPrimera(): void {
-    this.paginaActual = 1;
-    this.refresh();
-}
-
-getPaginaAnterior(): void {
-    if(this.paginaActual> 1) {
-        this.paginaActual = this.paginaActual - 1;
+    getPaginaPrimera(): void {
+        this.paginaActual = 1;
         this.refresh();
     }
-}
 
-getPaginaSiguiente(): void {
-    if(this.paginaActual <this.paginaUltima) {
-        this.paginaActual = this.paginaActual + 1;
+    getPaginaAnterior(): void {
+        if (this.paginaActual > 1) {
+            this.paginaActual = this.paginaActual - 1;
+            this.refresh();
+        }
+    }
+
+    getPaginaSiguiente(): void {
+        if (this.paginaActual < this.paginaUltima) {
+            this.paginaActual = this.paginaActual + 1;
+            this.refresh();
+        }
+    }
+
+    getPaginaUltima(): void {
+        this.paginaActual = this.paginaUltima;
         this.refresh();
     }
-}
 
-getPaginaUltima(): void {
-    this.paginaActual = this.paginaUltima;
-    this.refresh();
-}
+    ngOnInit() {
+        this.paginaActual = 1;
+        this.registrosPorPagina = 5;
+        this.refresh();
+        this.getNoticiaFoto();
+        this.getNoticiaPagina();
+    }
 
-ngOnInit() {
-    this.paginaActual = 1;
-    this.registrosPorPagina = 5;
-    this.refresh();
-    this.getNoticiaFoto();
-    this.getNoticiaPagina();
-}
-
-onSelect ( entidadActual: Noticia): void {
-    this.entidadSeleccionada = entidadActual;
-}
+    onSelect(entidadActual: Noticia): void {
+        this.entidadSeleccionada = entidadActual;
+    }
 }
