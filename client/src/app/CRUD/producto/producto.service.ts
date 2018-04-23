@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Producto } from '../../entidades/CRUD/Producto';
 import { ProductoPagina } from '../../entidades/especifico/ProductoPagina';
+import { ProductoLink } from '../../entidades/especifico/ProductoLink';
 
 @Injectable()
 
@@ -13,6 +14,7 @@ export class ProductoService {
     private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     private urlBase = environment.apiUrl + 'producto';
     private urlBase1 = environment.apiUrl + 'producto_pagina';
+    private urlBase2 = environment.apiUrl + 'producto_link';
 
     constructor(private http: Http) {
     }
@@ -26,6 +28,9 @@ export class ProductoService {
     }
     getProductoPagina(): Promise<ProductoPagina[]> {
         return this.http.get(this.urlBase1 + '/consultar').toPromise().then(response => response.json() as ProductoPagina[]).catch(this.handleError);
+    }
+    getProductoLink(): Promise<ProductoLink[]> {
+        return this.http.get(this.urlBase2 + '/consultar').toPromise().then(response => response.json() as ProductoLink[]).catch(this.handleError);
     }
     getPagina(pagina: number, tamanoPagina: number): Promise<Producto[]> {
         return this.http.get(this.urlBase + '/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response => response.json() as Producto[]).catch(this.handleError);

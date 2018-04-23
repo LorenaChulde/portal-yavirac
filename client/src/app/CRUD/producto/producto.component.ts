@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Producto } from '../../entidades/CRUD/Producto';
 import { ProductoPagina } from '../../entidades/especifico/ProductoPagina';
+import { ProductoLink } from '../../entidades/especifico/ProductoLink';
 import { ProductoService } from './producto.service';
 
 import 'rxjs/add/operator/toPromise';
@@ -20,6 +21,7 @@ export class ProductoComponent implements OnInit {
     busy: Promise<any>;
     entidades: Producto[];
     entidadesProductoPagina: ProductoPagina[];
+    entidadesProductoLink: ProductoLink[];
     entidadSeleccionada: Producto;
     pagina: 1;
     tamanoPagina: 20;
@@ -91,6 +93,21 @@ export class ProductoComponent implements OnInit {
             .getProductoPagina()
             .then(entidadesRecuperadas => {
                 this.entidadesProductoPagina = entidadesRecuperadas;
+                if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
+                    this.toastr.success('¡No hay datos!', 'Consulta');
+                } else {
+                    this.toastr.success('La consulta fue exitosa', 'Consulta');
+                }
+            })
+            .catch(error => {
+                this.toastr.success('Se produjo un error', 'Consulta');
+            });
+    }
+    getProductoLink(): void {
+        this.busy = this.dataService
+            .getProductoLink()
+            .then(entidadesRecuperadas => {
+                this.entidadesProductoLink = entidadesRecuperadas;
                 if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
                     this.toastr.success('¡No hay datos!', 'Consulta');
                 } else {
@@ -229,6 +246,7 @@ export class ProductoComponent implements OnInit {
         this.registrosPorPagina = 5;
         this.refresh();
         this.getProductoPagina();
+        this.getProductoLink();
     }
 
     onSelect(entidadActual: Producto): void {

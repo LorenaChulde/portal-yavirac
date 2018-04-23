@@ -154,7 +154,10 @@
          <div class="form-group row">
             <label for="linkSitio" class="col-sm-4 col-form-label">Link del Sitio</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="linkSitio" name="linkSitio" placeholder="Link del Sitio" [(ngModel)]="entidadSeleccionada.linkSitio">
+              <select class="form-control" id="idlink" name="idlink" [(ngModel)]="entidadSeleccionada.idlink">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let link of entidadesProductoLink" value={{link.id}}>{{link.url}}</option>
+              </select>
             </div>
          </div>
          <div class="form-group row">
