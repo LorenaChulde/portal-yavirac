@@ -111,13 +111,22 @@
         <div class="form-group row">
           <label for="prioridad" class="col-sm-4 col-form-label">Prioridad</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="prioridad" name="prioridad" placeholder="Prioridad" [(ngModel)]="entidadSeleccionada.prioridad">
-          </div>
+            <select class="form-control" id="Prioridad" name="Prioridad"
+             [(ngModel)]="entidadSeleccionada.Prioridad">
+                    <option value="-1" selected>Seleccione...</option>
+                    <option value="2" selected>Alta</option>
+                    <option value="1" selected>Media</option>
+                    <option value="0" selected>Baja</option>
+            </select>
+      </div>
         </div>
         <div class="form-group row">
           <label for="idLink" class="col-sm-4 col-form-label">Link</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="idLink" name="idLink" placeholder="Link" [(ngModel)]="entidadSeleccionada.idLink">
+            <select class="form-control" id="idLink" name="idLink" [(ngModel)]="entidadSeleccionada.idLink">
+              <option value="" selected>Seleccione...</option>
+              <option *ngFor="let link of entidadesAsiganacionLinkLink" value={{link.id}}>{{link.url}}</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
