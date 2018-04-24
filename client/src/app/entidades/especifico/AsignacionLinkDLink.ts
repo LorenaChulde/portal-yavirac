@@ -1,4 +1,4 @@
-export class AsiganacionLinkPagina {
+export class AsignacionLinkDLink {
    id: number;
    descripcion: string;
 }
