@@ -252,4 +252,5 @@ export class ProductoComponent implements OnInit {
     onSelect(entidadActual: Producto): void {
         this.entidadSeleccionada = entidadActual;
     }
+// tslint:disable-next-line:eofline
 }

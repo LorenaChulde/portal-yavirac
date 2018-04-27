@@ -93,7 +93,7 @@ export class PaginaComponent implements OnInit {
         if (this.entidadSeleccionada == null) {
             return false;
         }
-        return porVerificar.id === this.entidadSeleccionada.id;
+        return porVerificar.id === this.entidadSeleccionada.idPagina;
     }
 
     cerrarVentanaEdicion(): void {
@@ -201,7 +201,7 @@ export class PaginaComponent implements OnInit {
 
     crearEntidad(): Pagina {
         const nuevoPagina = new Pagina();
-        nuevoPagina.id = 0;
+        nuevoPagina.idPagina = 0;
         return nuevoPagina;
     }
 
@@ -236,7 +236,7 @@ export class PaginaComponent implements OnInit {
     }
 
     delete(entidadParaBorrar: Pagina): void {
-        this.busy = this.dataService.remove(entidadParaBorrar.id)
+        this.busy = this.dataService.remove(entidadParaBorrar.idPagina)
             .then(respuesta => {
                 if (respuesta) {
                     this.toastr.success('La eliminación fue exitosa', 'Eliminación');

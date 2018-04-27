@@ -4,9 +4,10 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 import { Noticias } from '../../entidades/especifico/Noticias';
+import { PaginaSecundaria } from '../../entidades/especifico/PaginaSecundaria';
 
 @Injectable()
-export class NoticiasService {
+export class DashboardService {
     handleError(arg0: any): any {
         throw new Error('Method not implemented.');
     }
@@ -16,7 +17,7 @@ export class NoticiasService {
         'Access-Control-Allow-Origin': '*'
     });
     // tslint:disable-next-line:member-ordering
-    private urlBase = environment.apiUrl + 'noticias';
+    private urlBase = environment.apiUrl + 'dashboard';
 
     constructor(private http: Http) { }
 
@@ -31,12 +32,12 @@ export class NoticiasService {
             .then(response => response.json() as Noticias[])
             .catch(this.handleError);
     }
-    getNoticia(idNoticia): Promise<Noticias> {
+    getNoticias(): Promise<Noticias[]> {
 
         return this.http
-            .get(this.urlBase + '/leer_noticia?idNoticia=' + idNoticia)
+            .get(this.urlBase + '/leer_noticias')
             .toPromise()
-            .then(response => response.json() as Noticias)
+            .then(response => response.json() as Noticias[])
             .catch(this.handleError);
     }
 }

@@ -1,12 +1,11 @@
-export class Pagina {
-   idPagina: number;
+export class PaginaSecundaria {
+   idPaginaSecundaria: number;
    slider: string;
    esPrincipal: number;
    texto: string;
    idFoto: number;
    idMenu: number;
    descripcion: string;
-   tipoArchivo: string;
-   nombreArchivo: string;
+   tipoArchivo:string;
    adjunto: string;
 }

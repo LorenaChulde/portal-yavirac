@@ -1,0 +1,96 @@
+<div [@routerTransition]>
+    <div class="container">
+        <div class="row">
+            <br>
+            <div class="col-3">
+                <div [@routerTransition]>
+                    <h1 align="center">
+                        <img src="../assets/images/PRUEBA.gif" alt="YAVIRAC" width="80%" height="auto">
+                    </h1>
+                </div>
+            </div>
+            <div class="col-6">
+                <div [@routerTransition]>
+                    <h1 align="center">
+                        <img src="../assets/images/LetrasYavirac.PNG" alt="YAVIRAC" width="100%" height="100%">
+                    </h1>
+                </div>
+            </div>
+            <div class="col-3">
+                <div [@routerTransition]>
+                    <h1 align="center">
+                        <img src="../assets/images/senescyt.png" alt="YAVIRAC" width="100%" height="auto">
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+        <div class="row" style="margin-top:15px">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4" *ngFor="let paginaSecundaria of PaginaSecundaria">
+                        <div class="thumbnail">
+                            <img src="{{paginaSecundaria.srcFoto}}" class="img-circle"
+                                 width="150px" height="150px">
+                            <div class="caption">
+                                <p></p>
+                                <h5>{{paginaSecundaria.descripcion}} </h5>
+                                <h5>{{paginaSecundaria.texto}}</h5>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+           <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" class="btn" *ngFor="let alert of alerts" (click)="enviarNoticia(alert.idNoticia)"
+                [routerLink]="['/noticias']">
+                {{ alert.message }}
+            </ngb-alert>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card card-default">
+            <div class="card-header">
+                <i class="fa fa-clock-o fa-fw"></i> Mas Aplicaciones
+            </div>
+            <!-- /.card-header -->
+            <app-timeline></app-timeline>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-4">
+        <div class="card card-default mb-3">
+            <div class="card-header">
+                <i class="fa fa-bell fa-fw"></i> Notificaciones
+            </div>
+            <!-- /.card-header -->
+            <app-notification></app-notification>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <app-chat></app-chat>
+        <!-- /.card .chat-card -->
+    </div>
+    <!-- /.col-lg-4 -->
+</div>

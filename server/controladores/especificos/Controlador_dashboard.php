@@ -1,12 +1,12 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
-class Controlador_noticias extends Controlador_Base
+class Controlador_dashboard extends Controlador_Base
 {
-   function leer_noticia($args)
+   function leer_noticias($args)
    { 
-        $sql = "SELECT descripcion, titulo, fecha 
-                From Noticia where id = ?;";
-        $parametros = array($args['idNoticia']);
+       
+        $sql = "SELECT descripcion, titulo, fecha  From Noticia";
+        $parametros = array();
         
         $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
         if(is_null($respuesta[0])||$respuesta[0]==0){

@@ -1,0 +1,112 @@
+<div [@routerTransition]>
+    <div class="container">
+        <div class="row">
+            <br>
+            <div class="col-3">
+                <div [@routerTransition]>
+                    <h1 align="center">
+                        <img src="../assets/images/PRUEBA.gif" alt="YAVIRAC" width="80%" height="auto">
+                    </h1>
+                </div>
+            </div>
+            <div class="col-6">
+                <div [@routerTransition]>
+                    <h1 align="center">
+                        <img src="../assets/images/LetrasYavirac.PNG" alt="YAVIRAC" width="100%" height="100%">
+                    </h1>
+                </div>
+            </div>
+            <div class="col-3">
+                <div [@routerTransition]>
+                    <h1 align="center">
+                        <img src="../assets/images/senescyt.png" alt="YAVIRAC" width="100%" height="auto">
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let slider of sliders">
+                        <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                        <div class="carousel-caption">
+                            <h3>{{slider.label}}</h3>
+                            <p>{{slider.text}}</p>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-cogs'" [label]="'Análisis de sistemas'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/analisis">Ver Carrera</a>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-cutlery'" [label]="'Arte Culinario'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/culinario">Ver Carrera</a>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-scissors'" [label]="'Diseño de Modas'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/pagina-secundaria">Ver Carrera</a>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-floppy-o'" [label]="'Desarrollo de Software'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/carrera-software">Ver Carrera</a>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-bolt'" [label]="'Electricidad'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/electricidad">Ver Carrera</a>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-microchip'" [label]="'Electronica'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/electronica">Ver Carrera</a>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-street-view'" [label]="'Guianza Turistica'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/guianza-turistica">Ver Carrera</a>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'light'" [bordClass]="'primary'" [icon]="'fa fa-pie-chart'" [label]="'Marketing'"></app-stat>
+                <a type="button" class="btn btn-outline-primary btn-lg col-xl-12" href="http://localhost:4200/marketing">Ver Carrera</a>
+            </div>
+        </div>
+        <hr>
+
+        <hr>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <i class="fa fa-clock-o fa-fw"></i> Mas Aplicaciones
+                    </div>
+                    <!-- /.card-header -->
+                    <app-timeline></app-timeline>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="card card-default mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-bell fa-fw"></i> Notificaciones
+                    </div>
+                    <!-- /.card-header -->
+                    <app-notification></app-notification>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <app-chat></app-chat>
+                <!-- /.card .chat-card -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+    </div>
+</div>

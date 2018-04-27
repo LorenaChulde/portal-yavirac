@@ -3,10 +3,10 @@ import { Headers, Http } from '@angular/http';
 import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
-import { Noticias } from '../../entidades/especifico/Noticias';
+import { PaginaSecundaria } from '../../entidades/especifico/PaginaSecundaria';
 
 @Injectable()
-export class NoticiasService {
+export class PaginaSecundariaService {
     handleError(arg0: any): any {
         throw new Error('Method not implemented.');
     }
@@ -16,7 +16,7 @@ export class NoticiasService {
         'Access-Control-Allow-Origin': '*'
     });
     // tslint:disable-next-line:member-ordering
-    private urlBase = environment.apiUrl + 'noticias';
+    private urlBase = environment.apiUrl + 'pagina_secundaria';
 
     constructor(private http: Http) { }
 
@@ -24,19 +24,19 @@ export class NoticiasService {
         return this.urlBase;
     }
 
-    getAll(): Promise<Noticias[]> {
+    getAll(): Promise<PaginaSecundaria[]> {
         return this.http
             .get(this.urlBase + '/leer')
             .toPromise()
-            .then(response => response.json() as Noticias[])
+            .then(response => response.json() as PaginaSecundaria[])
             .catch(this.handleError);
     }
-    getNoticia(idNoticia): Promise<Noticias> {
-
+    getPaginaSecundaria(idPaginaSecundaria): Promise<PaginaSecundaria> {
+        console.log(this.urlBase + '/leer_pagina_secundaria?idPaginaSecundaria=' + idPaginaSecundaria);
         return this.http
-            .get(this.urlBase + '/leer_noticia?idNoticia=' + idNoticia)
+            .get(this.urlBase + '/leer_pagina_secundaria?idPaginaSecundaria=' + idPaginaSecundaria)
             .toPromise()
-            .then(response => response.json() as Noticias)
+            .then(response => response.json() as PaginaSecundaria)
             .catch(this.handleError);
     }
 }

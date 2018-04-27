@@ -27,6 +27,7 @@ const routes: Routes = [
             { path: 'producto', loadChildren: './../CRUD/producto/producto.module#ProductoModule' },
             { path: 'usuario', loadChildren: './../CRUD/usuario/usuario.module#UsuarioModule' },
             { path: 'bolsa-empleo', loadChildren: './bolsa-empleo/bolsa-empleo.module#BolsaEmpleoModule' },
+            { path: 'pagina-secundaria', loadChildren: './pagina-secundaria/pagina-secundaria.module#PaginaSecundariaModule' },
             { path: 'carrera-software', loadChildren: './carrera-software/carrera-software.module#CarreraSoftwareModule' },
             { path: 'investigacion', loadChildren: './investigacion/investigacion.module#InvestigacionModule' },
             { path: 'vinculacion', loadChildren: './vinculacion/vinculacion.module#VinculacionModule' },

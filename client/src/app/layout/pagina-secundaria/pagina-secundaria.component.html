@@ -1,17 +1,18 @@
 <div class="container">
-    <div *ngFor="let actual of noticia">
+    <div *ngFor="let actual of paginaSecundaria">
         <div class="container">
             <div class="col-12">
                 <div class="alert alert-primary" role="alert" align="CENTER">
-                    <H1>{{actual.titulo}}</H1>
+                    <H1>{{actual.descripcion}}</H1>
                 </div>
                 <div class="card-body">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
                                 <div class="col-12 alert alert-secondary bg-light border-dark">
-                                    <p>{{actual.descripcion}}</p>
-                                    <h6>{{actual.fecha}}</h6>
+                                    <H1>PAGINA SECUNDARIA</H1>
+                                    <img src="{{srcImagen}}" alt="nada" width='450px'>
+                                    <h6>{{actual.texto}}</h6>-->
                                 </div>
                             </div>
                         </div>
@@ -22,21 +23,21 @@
                         <div class="col-12">
                             <div class="card-group">
                                 <div class="card alert alert-secondary bg-light border-dark">
-                                    <div>
+                                    <!--<div>
                                         <img class="card-img-top">aqui la foto {{actual.idFoto}}
-                                    </div>
+                                    </div>-->
 
                                     <div class="card-footer alert alert-secondary">
-                                        <small class="text-muted">{{actual.fecha}}</small>
+                                        <small class="text-muted">{{actual.texto}}</small>
                                     </div>
                                 </div>
                                 <div class="card alert alert-secondary bg-light border-dark">
-                                    <div>
-                                        <img class="card-img-top">aqui la pagina {{actual.idPagina}}
-                                    </div>
+                                    <!-- <div>
+                                        <img class="card-img-top">aqui la pagina {{actual.idFoto}}
+                                    </div>-->
 
                                     <div class="card-footer alert alert-secondary">
-                                        <small class="text-muted">{{actual.fecha}}</small>
+                                        <small class="text-muted">{{actual.texto}}</small>
                                     </div>
                                 </div>
                             </div>
