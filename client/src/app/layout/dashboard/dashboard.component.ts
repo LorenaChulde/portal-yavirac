@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -17,9 +18,9 @@ export class DashboardComponent implements OnInit {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
+                label: 'Patio Central',
                 text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+                    'Vista desde el Patio Central.'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',

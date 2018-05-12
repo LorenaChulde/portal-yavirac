@@ -16,6 +16,22 @@ class Controlador_imagen extends Controlador_Base
       }
    }
 
+   function insertar_imagen($args)
+   {
+      $sql= "INSERT INTO Imagen (nombreArchivo, tipoArchivo, adjunto) VALUES (?,?,?);";
+      $parametros= array(
+                  $args['nombreArchivo'],
+                  $args['tipoArchivo'],
+                  $args['adjunto']);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      if(is_null($respuesta[0])){
+         return true;
+       }else{
+         return false;
+            }
+   }
+  
+
    function actualizar($args)
    {
       $imagen = new Imagen($args["id"],$args["idPersona"],$args["tipoArchivo"],$args["nombreArchivo"],$args["adjunto"]);

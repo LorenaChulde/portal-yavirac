@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Imagen } from '../../entidades/CRUD/Imagen';
 
+
 @Injectable()
 
 export class ImagenService {
@@ -18,10 +19,20 @@ export class ImagenService {
    baseUrl(): string {
        return this.urlBase;
    }
+   insertarImagen(entidadTransporte: Imagen): Promise<boolean> {
+    return this.http
+        .post(this.urlBase + '/insertar_imagen', JSON.stringify(entidadTransporte))
+        .toPromise()
+        .then(response => response.json() as Imagen[])
+        .catch(this.handleError);
+}
 
    getAll(): Promise<Imagen[]> {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Imagen[]).catch(this.handleError);
    }
+   getImagen(): Promise<Imagen[]> {
+    return this.http.get(this.urlBase + 'leer').toPromise().then(response => response.json() as Imagen[]).catch(this.handleError);
+}
 
    getPagina(pagina: number, tamanoPagina: number): Promise<Imagen[]> {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Imagen[]).catch(this.handleError);
